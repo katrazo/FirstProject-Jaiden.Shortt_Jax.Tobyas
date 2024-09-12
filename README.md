@@ -1,2 +1,2 @@
 Project 1 
-by Jaiden Shortt
+by Jaiden Shortt and Jax Tobyas
