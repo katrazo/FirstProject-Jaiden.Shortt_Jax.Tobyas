@@ -18,7 +18,7 @@ public class ReadJSONFile {
     private static URLConnection connectToWikipedia() throws IOException {
         String encodedUrlString = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=" +
                 URLEncoder.encode("Sandwich", Charset.defaultCharset()) +
-                "&rvprop=timestamp%7Cuser&rvlimit=4&redirects";
+                "&rvprop=timestamp%7Cuser&rvlimit=15&redirects";
         URL url = URI.create(encodedUrlString).toURL();
         URLConnection connection = url.openConnection();
         connection.setRequestProperty("User-Agent",
@@ -33,6 +33,10 @@ public class ReadJSONFile {
 
     private static void printRawJson(String jsonData) {
         System.out.println(jsonData);
+    }
+
+    public URLConnection getConnection() throws IOException {
+        return connectToWikipedia();
     }
 
 }
