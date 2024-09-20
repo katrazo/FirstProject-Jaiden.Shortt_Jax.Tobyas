@@ -36,8 +36,4 @@ public class ReadJSONFile {
         return new String(connection.getInputStream().readAllBytes(), Charset.defaultCharset());
     }
 
-    private static void printRawJson(String jsonData) {
-        System.out.println(jsonData);
-    }
-
 }

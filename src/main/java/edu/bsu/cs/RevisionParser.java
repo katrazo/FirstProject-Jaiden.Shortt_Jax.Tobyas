@@ -3,18 +3,14 @@ package edu.bsu.cs;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
-import java.util.Objects;
+import java.util.List;
 
 public class RevisionParser {
     public static void main(String[] args){
-
     }
-    String parseRevision(String jsonData){
+    List<Object> parseRevision(String jsonData){
         Object revision = Configuration.defaultConfiguration().jsonProvider().parse(jsonData);
-        return JsonPath.read(revision, "$.query.pages.82425.revisions[0].user");
+        return JsonPath.read(revision, "$..revisions[:15].user");
     }
 }
 

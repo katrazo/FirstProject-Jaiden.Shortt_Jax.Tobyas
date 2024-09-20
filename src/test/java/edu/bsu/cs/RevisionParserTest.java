@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class RevisionParserTest {
     @Test
-    public void revisionUserParserTest() throws IOException {
+    public void revisionParserUserTest() throws IOException {
         String json = readSampleFileAsString();
         Object revision = Configuration.defaultConfiguration().jsonProvider().parse(json);
 
@@ -25,11 +25,4 @@ public class RevisionParserTest {
             return new String(Objects.requireNonNull(sampleFile).readAllBytes(), Charset.defaultCharset());
         }
     }
-    @Test
-    public void revisionDateTimeParserTest(){
-
-    }
-
-
-
 }
