@@ -10,9 +10,14 @@ import java.nio.charset.Charset;
 public class ReadJSONFile {
 
     public static void main(String[] args) throws IOException {
+        RevisionParser revisionParser = new RevisionParser();
         URLConnection connection = connectToWikipedia();
         String jsonData = readJsonAsStringFrom(connection);
-        printRawJson(jsonData);
+        System.out.println(revisionParser.parseRevision(getRawJson(jsonData)));
+    }
+
+    public static String getRawJson(String jsonData) {
+        return jsonData;
     }
 
     private static URLConnection connectToWikipedia() throws IOException {
@@ -33,10 +38,6 @@ public class ReadJSONFile {
 
     private static void printRawJson(String jsonData) {
         System.out.println(jsonData);
-    }
-
-    public URLConnection getConnection() throws IOException {
-        return connectToWikipedia();
     }
 
 }
