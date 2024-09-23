@@ -1,6 +1,7 @@
 package edu.bsu.cs;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
@@ -13,7 +14,7 @@ public class ReadJSONFile {
         RevisionParser revisionParser = new RevisionParser();
         URLConnection connection = connectToWikipedia();
         String jsonData = readJsonAsStringFrom(connection);
-        System.out.println(revisionParser.parseRevision(getRawJson(jsonData)));
+        //System.out.println(revisionParser.parseRevision(getRawJson(jsonData)));
     }
 
     public static String getRawJson(String jsonData) {
@@ -29,11 +30,12 @@ public class ReadJSONFile {
         connection.setRequestProperty("User-Agent",
                 "CS222FirstProject/0.1 (user@bsu.edu)");
         connection.connect();
+
+        //InputStream inputStream = connection.getInputStream();
         return connection;
     }
 
     private static String readJsonAsStringFrom(URLConnection connection) throws IOException {
         return new String(connection.getInputStream().readAllBytes(), Charset.defaultCharset());
     }
-
 }

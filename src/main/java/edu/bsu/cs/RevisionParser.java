@@ -3,15 +3,24 @@ package edu.bsu.cs;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 
-import java.util.List;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 
 public class RevisionParser {
-    public static void main(String[] args){
-    }
-    List<Object> parseRevision(String jsonData){
-        Object revision = Configuration.defaultConfiguration().jsonProvider().parse(jsonData);
-        return JsonPath.read(revision, "$..revisions[:15].user");
+
+    ArrayList<Object> parseRevision(InputStream jsonData) throws IOException {
+        Object revision;
+        ArrayList<Object> revisionList = new ArrayList<>();
+//needs some sort of handling in case there are less than 15 revisions
+        for (int revisionIteration = 0; revisionIteration <= 15; revisionIteration++) {
+             revision = JsonPath.read(jsonData, "$.query.pages.82425.revisions[revisionIteration]");
+            revisionList.add(revision);
+        }
+        return revisionList;
     }
 }
+
+
 
 
