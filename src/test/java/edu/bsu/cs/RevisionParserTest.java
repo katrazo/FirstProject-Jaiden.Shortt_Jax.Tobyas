@@ -25,10 +25,4 @@ public class RevisionParserTest {
             return new String(Objects.requireNonNull(sampleFile).readAllBytes(), Charset.defaultCharset());
         }
     }
-
-    @Test
-    public void revisionParserTestFromURL () throws IOException {
-
-    }
-
 }
