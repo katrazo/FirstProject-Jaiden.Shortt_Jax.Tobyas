@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class RevisionParser {
 
-    ArrayList<Object> parseRevision(InputStream jsonData) throws IOException {
+    ArrayList<Object> parseRevisions(String jsonData) throws IOException {
         Object revision;
         ArrayList<Object> revisionList = new ArrayList<>();
 //needs some sort of handling in case there are less than 15 revisions
