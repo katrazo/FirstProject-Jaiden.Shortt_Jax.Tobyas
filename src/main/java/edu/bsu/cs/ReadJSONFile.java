@@ -14,7 +14,7 @@ public class ReadJSONFile {
         RevisionParser revisionParser = new RevisionParser();
         URLConnection connection = connectToWikipedia();
         String jsonData = readJsonAsStringFrom(connection);
-        //System.out.println(revisionParser.parseRevision(getRawJson(jsonData)));
+        System.out.println(revisionParser.parseRevision(getRawJson(jsonData)));
     }
 
     public static String getRawJson(String jsonData) {
@@ -31,7 +31,7 @@ public class ReadJSONFile {
                 "CS222FirstProject/0.1 (user@bsu.edu)");
         connection.connect();
 
-        //InputStream inputStream = connection.getInputStream();
+        InputStream inputStream = connection.getInputStream();
         return connection;
     }
 
