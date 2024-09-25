@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 public class RevisionFormatter {
 
-    public void formatRevision(ArrayList <Object> revisionList) {
-        for (Object revision : revisionList) {
-            System.out.printf("Revision User:%s", revision);
+    public void formatRevision(ArrayList <Revision> revisionList) {
+        for (Revision revision : revisionList) {
+            revision.getRevisionData();
         }
     }
-
 }

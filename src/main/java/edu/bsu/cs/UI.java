@@ -13,8 +13,7 @@ public class UI {
         String articleInput = inputReader.nextLine();
         try {
             String jsonData = ReadJSONFile.connectToWikipedia(articleInput);
-            //System.out.println(jsonData);
-            ArrayList<Object> revisionList = revisionParser.parseRevisions(jsonData);
+            ArrayList <Revision> revisionList = revisionParser.parseRevisions(jsonData);
             revisionFormatter.formatRevision(revisionList);
 
         } catch (IOException e) {
