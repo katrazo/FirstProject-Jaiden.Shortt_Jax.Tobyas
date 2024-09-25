@@ -4,12 +4,12 @@ public class Revision {
     String timestamp;
     String username;
 
-    public Revision (String timestamp, String username) {
-        this.timestamp = timestamp;
+    public Revision (String username, String timestamp) {
         this.username = username;
+        this.timestamp = timestamp;
     }
     public String getRevisionData(){
-        return String.format("Name: %s Timestamp: %s\n", username, timestamp);
+        return String.format("Name: %s, Timestamp: %s\n", username, timestamp);
     }
 
 }

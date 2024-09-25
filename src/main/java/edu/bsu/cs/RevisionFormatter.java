@@ -6,7 +6,7 @@ public class RevisionFormatter {
 
     public void formatRevision(ArrayList <Revision> revisionList) {
         for (Revision revision : revisionList) {
-            revision.getRevisionData();
+            System.out.println(revision.getRevisionData());
         }
     }
 }
