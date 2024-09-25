@@ -1,4 +1,5 @@
 package edu.bsu.cs;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,11 +15,10 @@ public class UI {
         try {
             String jsonData = ReadJSONFile.connectToWikipedia(articleInput);
             ArrayList <Revision> revisionList = revisionParser.parseRevisions(jsonData);
+            System.out.printf("Redirected to %s\n", revisionParser.getRedirect(jsonData));
             revisionFormatter.formatRevision(revisionList);
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-
 }

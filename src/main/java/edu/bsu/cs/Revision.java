@@ -11,5 +11,4 @@ public class Revision {
     public String getRevisionData(){
         return String.format("Name: %s, Timestamp: %s\n", username, timestamp);
     }
-
 }

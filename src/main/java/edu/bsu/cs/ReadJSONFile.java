@@ -15,9 +15,8 @@ public class ReadJSONFile {
         URL url = URI.create(encodedUrlString).toURL();
         URLConnection connection = url.openConnection();
         connection.setRequestProperty("User-Agent",
-                "CS222FirstProject/0.1 (user@bsu.edu)");
+                "CS222FirstProject/0.1 (haylee.shortt@bsu.edu)");
         connection.connect();
         return new String(connection.getInputStream().readAllBytes(), Charset.defaultCharset());
-
     }
 }
