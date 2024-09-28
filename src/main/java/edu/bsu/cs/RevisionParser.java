@@ -21,7 +21,7 @@ public class RevisionParser {
         return revisionList;
     }
 
-    String getRedirect(String json) {
+    static String getRedirect(String json) {
         String titleRedirectedTo = null;
 
         try {
@@ -35,7 +35,5 @@ public class RevisionParser {
         return titleRedirectedTo;
     }
 }
-
-
 
 

@@ -17,6 +17,7 @@ public class ReadJSONFile {
         connection.setRequestProperty("User-Agent",
                 "CS222FirstProject/0.1 (haylee.shortt@bsu.edu)");
         connection.connect();
+        ErrorHandling.checkConnection(connection.getURL());
         return new String(connection.getInputStream().readAllBytes(), Charset.defaultCharset());
     }
 }
