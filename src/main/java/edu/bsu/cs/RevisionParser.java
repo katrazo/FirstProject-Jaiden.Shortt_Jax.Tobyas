@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class RevisionParser {
-    public ArrayList <Revision> parseRevisions(String jsonData) throws IOException {
+    public static ArrayList <Revision> parseRevisions(String jsonData) throws IOException {
         JSONArray revisionsFromJson = JsonPath.read(jsonData, "$.query.pages[*].revisions[*]");
         ArrayList<Revision> revisionList = new ArrayList<> (revisionsFromJson.size());
 
