@@ -66,7 +66,7 @@ public class GraphicalUserInterface extends Application {
         outputField.setText(formattedRevisions);
     }
     private void checkRedirect(String jsonData) {
-        String titleRedirectedTo = RevisionParser.getRedirect(jsonData);
+        String titleRedirectedTo = RedirectionParser.getRedirect(jsonData);
         if (titleRedirectedTo != null) {
             redirectField.setText(titleRedirectedTo);
         }

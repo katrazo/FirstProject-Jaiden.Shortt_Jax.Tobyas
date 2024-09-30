@@ -24,10 +24,4 @@ public class RevisionParserTest {
             return new String(Objects.requireNonNull(sampleFile).readAllBytes(), Charset.defaultCharset());
         }
     }
-    @Test
-    public void revisionParserTestFromURL () throws IOException {
-        String jsonData = ReadJSONFile.connectToWikipedia("sandwich");
-        String user = JsonPath.read(jsonData, "$.query.pages.82425.revisions[0].user");
-        Assertions.assertEquals("Ira Leviton", user);
-    }
 }

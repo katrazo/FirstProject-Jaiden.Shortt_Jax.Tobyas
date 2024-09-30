@@ -8,6 +8,6 @@ public class Revision {
         Revision.timestamp = timestamp;
     }
     public static String getRevisionData(){
-        return String.format("Name: %s, Timestamp: %s\n", username, timestamp);
+        return String.format("%s  %s\n", timestamp, username);
     }
 }

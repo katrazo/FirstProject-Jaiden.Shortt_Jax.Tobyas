@@ -1,7 +1,6 @@
 package edu.bsu.cs;
 
 import com.jayway.jsonpath.JsonPath;
-import com.jayway.jsonpath.PathNotFoundException;
 import net.minidev.json.JSONArray;
 
 import java.io.IOException;
@@ -19,20 +18,6 @@ public class RevisionParser {
             revisionList.add(revision);
         }
         return revisionList;
-    }
-
-    static String getRedirect(String json) {
-        String titleRedirectedTo = null;
-
-        try {
-            JSONArray redirectionObject = JsonPath.read(json, "$.query.redirects[*]");
-            if (!redirectionObject.isEmpty()) {
-                titleRedirectedTo = JsonPath.read(redirectionObject.getFirst(), "$.to");
-            }
-        } catch (PathNotFoundException e) {
-            return null;
-        }
-        return titleRedirectedTo;
     }
 }
 
