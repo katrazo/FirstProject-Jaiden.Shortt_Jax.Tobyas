@@ -17,13 +17,15 @@ public class UI {
         try {
             String jsonData = ReadJSONFile.connectToWikipedia(articleInput);
             ArrayList <Revision> revisionList = revisionParser.parseRevisions(jsonData);
-            String titleRedirectedTo = RevisionParser.getRedirect(jsonData);
-            if (titleRedirectedTo != null) {
-                System.out.printf("Redirected to %s\n", titleRedirectedTo);
-            }
             System.out.println(revisionFormatter.formatRevision(revisionList));
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+    private static void checkRedirect(String jsonData) {
+        String titleRedirectedTo = RevisionParser.getRedirect(jsonData);
+        if (titleRedirectedTo != null) {
+            System.out.printf("Redirected to %s\n", titleRedirectedTo);
         }
     }
 }

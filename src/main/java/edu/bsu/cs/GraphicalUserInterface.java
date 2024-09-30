@@ -12,15 +12,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 public class GraphicalUserInterface extends Application {
 
     private final Button getArticleButton = new Button("Get Article");
     private final TextField inputField = new TextField();
     private final TextField outputField = new TextField();
+    private final TextField redirectField = new TextField();
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
+        redirectField.setEditable(false);
         outputField.setEditable(false);
         configure(primaryStage);
         configureGetArticleButton();
@@ -35,9 +36,11 @@ public class GraphicalUserInterface extends Application {
     private Pane createRoot() {
         VBox root = new VBox();
         root.getChildren().addAll(
-                new Label("Article Input:"),
+                new Label("Article Title Input:"),
                 inputField,
                 getArticleButton,
+                new Label ("Redirect:"),
+                redirectField,
                 new Label("Output:"),
                 outputField);
         return root;
@@ -58,11 +61,18 @@ public class GraphicalUserInterface extends Application {
         String articleInput = inputField.getText();
         String jsonData = ReadJSONFile.connectToWikipedia(articleInput);
         ArrayList<Revision> revisionList = RevisionParser.parseRevisions(jsonData);
-
+        checkRedirect(jsonData);
         String formattedRevisions = String.valueOf(revisionFormatter.formatRevision(revisionList));
         outputField.setText(formattedRevisions);
-
-
+    }
+    private void checkRedirect(String jsonData) {
+        String titleRedirectedTo = RevisionParser.getRedirect(jsonData);
+        if (titleRedirectedTo != null) {
+            redirectField.setText(titleRedirectedTo);
+        }
+        else {
+            redirectField.setText("");
+        }
     }
 
 }
