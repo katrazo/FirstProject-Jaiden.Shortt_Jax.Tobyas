@@ -2,7 +2,7 @@ package edu.bsu.cs;
 
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
-import org.junit.jupiter.api.Assertions;
+import net.minidev.json.JSONArray;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -15,8 +15,15 @@ public class RevisionFormatterTest {
     @Test
     public void formatRevision () throws IOException {
         String json = readSampleFileAsString();
-        Object revision = Configuration.defaultConfiguration().jsonProvider().parse(json);
-        String user = JsonPath.read(revision, "$.query.pages.82425.revisions[0].user");
+        Object revisions = Configuration.defaultConfiguration().jsonProvider().parse(json);
+        JSONArray revisionsFromJsonFile = JsonPath.read(revisions, "$.query.pages[*].revisions[*]");
+
+        for (Object revision : revisionsFromJsonFile) {
+            String username = JsonPath.read(revision, "$.user");
+            String timestamp = JsonPath.read(revision, "$.timestamp");
+            System.out.printf("%s  %s\n", timestamp, username);
+        }
+
     }
     private String readSampleFileAsString() throws NullPointerException, IOException {
         try (InputStream sampleFile = Thread.currentThread().getContextClassLoader()

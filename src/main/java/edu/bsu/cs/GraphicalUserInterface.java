@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class GraphicalUserInterface extends Application {
 
@@ -69,12 +70,7 @@ public class GraphicalUserInterface extends Application {
     }
     private void checkRedirect(String jsonData) {
         String titleRedirectedTo = RedirectionParser.getRedirect(jsonData);
-        if (titleRedirectedTo != null) {
-            redirectField.setText(titleRedirectedTo);
-        }
-        else {
-            redirectField.setText("");
-        }
+        redirectField.setText(Objects.requireNonNullElse(titleRedirectedTo, ""));
     }
 
 }
