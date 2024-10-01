@@ -8,7 +8,7 @@ Requires application using Java 11+ to run.
 ### To Run Console UI
 Run UI file.
 ### To Run Graphical UI
-Use Gradle > Tasks > Application > Run when running GraphicalUserInterface. 
+Use Gradle > Tasks > Application > Run to run GraphicalUserInterface. 
 
 ## Authors
 Jaiden Shortt and Jax Tobyas
