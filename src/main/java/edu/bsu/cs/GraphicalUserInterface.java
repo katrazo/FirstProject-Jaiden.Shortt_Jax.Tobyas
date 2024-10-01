@@ -38,14 +38,14 @@ public class GraphicalUserInterface extends Application {
     }
     private Pane createRoot() {
         VBox root = new VBox();
+        root.setStyle("-fx-padding: 16;" +
+                "-fx-border-color: black");
+        root.getPadding();
         root.getChildren().addAll(
-                new Label("Article Title Input:"),
-                inputField,
+                new Label("Article Title Input:"), inputField,
                 getArticleButton,
-                new Label ("Redirect:"),
-                redirectField,
-                new Label("Output:"),
-                outputField);
+                new Label ("Redirect:"), redirectField,
+                new Label("Output:"), outputField);
         return root;
     }
     private void configureGetArticleButton() {
