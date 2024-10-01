@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -16,12 +17,13 @@ public class GraphicalUserInterface extends Application {
 
     private final Button getArticleButton = new Button("Get Article");
     private final TextField inputField = new TextField();
-    private final TextField outputField = new TextField();
+    private final TextArea outputField = new TextArea();
     private final TextField redirectField = new TextField();
 
     @Override
     public void start(Stage primaryStage) {
         redirectField.setEditable(false);
+        outputField.setMinSize(150,300);
         outputField.setEditable(false);
         configure(primaryStage);
         configureGetArticleButton();
@@ -54,11 +56,11 @@ public class GraphicalUserInterface extends Application {
             }
         });
     }
-
     private void getWikiRevisions() throws IOException {
         RevisionFormatter revisionFormatter = new RevisionFormatter();
-
+        ErrorHandling errorHandling = new ErrorHandling();
         String articleInput = inputField.getText();
+        errorHandling.checkEmptyInput(articleInput);
         String jsonData = ReadJSONFile.connectToWikipedia(articleInput);
         ArrayList<Revision> revisionList = RevisionParser.parseRevisions(jsonData);
         checkRedirect(jsonData);

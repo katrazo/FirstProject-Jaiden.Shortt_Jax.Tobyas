@@ -1,9 +1,9 @@
 package edu.bsu.cs;
 
-public class Revision {
+ public final class Revision {
     static String timestamp;
     static String username;
-    public  Revision (String username, String timestamp) {
+    Revision (String username, String timestamp) {
         Revision.username = username;
         Revision.timestamp = timestamp;
     }
