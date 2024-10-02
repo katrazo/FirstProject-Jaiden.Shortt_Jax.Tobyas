@@ -1,7 +1,9 @@
 package edu.bsu.cs;
 
-import java.net.URL;
+import com.jayway.jsonpath.JsonPath;
+import net.minidev.json.JSONArray;
 
+import java.net.URL;
 
 public class ErrorHandlingCLI {
     public void checkEmptyInput(String articleInput) {
@@ -17,7 +19,15 @@ public class ErrorHandlingCLI {
         }
        catch (Exception NetworkError){
             System.err.println("The connection was unable to be established.");
-            System.exit(0);
+            System.out.flush();
+        }
+    }
+
+    public void checkForInvalidInput(String jsonData){
+        String pageValueObject = JsonPath.read(jsonData, "$.query.pages[*]");
+        if (pageValueObject.equals("-1")) {
+            System.err.println("Wiki page not found.");
+            System.out.flush();
         }
     }
 }

@@ -12,6 +12,7 @@ public class UI {
         String jsonData = ReadJSONFile.connectToWikipedia(articleInput);
         ArrayList <Revision> revisionList = RevisionParser.parseRevisions(jsonData);
         checkRedirect(jsonData);
+        errorHandlingCLI.checkForInvalidInput(jsonData);
         System.out.println(revisionFormatter.formatRevision(revisionList));
     }
     private static String getArticleInput() {

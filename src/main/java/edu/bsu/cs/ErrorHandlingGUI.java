@@ -1,5 +1,6 @@
 package edu.bsu.cs;
 
+import com.jayway.jsonpath.JsonPath;
 import javafx.scene.control.Alert;
 
 import java.net.URL;
@@ -25,7 +26,12 @@ public class ErrorHandlingGUI {
         }
     }
 
-
-
-
+    public void checkForInvalidInput(String jsonData){
+        String pageValueObject = JsonPath.read(jsonData, "$.query.page[*]");
+        if (pageValueObject.equals("-1")) {
+            errorBox.setAlertType(Alert.AlertType.ERROR);
+            errorBox.setContentText("Wiki page not found.");
+            errorBox.show();
+        }
+    }
 }
