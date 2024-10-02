@@ -65,9 +65,9 @@ public class GraphicalUserInterface extends Application {
     }
     private void getWikiRevisions() throws IOException {
         RevisionFormatter revisionFormatter = new RevisionFormatter();
-        ErrorHandlingCLI errorHandlingCLI = new ErrorHandlingCLI();
+        ErrorHandlingGUI errorHandlingGUI = new ErrorHandlingGUI();
         String articleInput = inputField.getText();
-        errorHandlingCLI.checkEmptyInput(articleInput);
+        errorHandlingGUI.checkEmptyInput(articleInput);
         String jsonData = ReadJSONFile.connectToWikipedia(articleInput);
         ArrayList<Revision> revisionList = RevisionParser.parseRevisions(jsonData);
         checkRedirect(jsonData);
