@@ -6,9 +6,9 @@ This project allows the user, upon entering the title of a Wikipedia article, to
 ## Build Instructions
 Requires application using Java 11+ to run. 
 ### To Run Console UI
-Run UI file.
+Run UIStarter file.
 ### To Run Graphical UI
-Use Gradle > Tasks > Application > Run to run GraphicalUserInterface. 
+Use "Gradle > Tasks > Application > Run" to run GUIStarter. 
 
 ## Authors
 Jaiden Shortt and Jax Tobyas
