@@ -11,22 +11,13 @@ public class ErrorHandling {
         }
     }
 
-//    public void checkArticleName (String jsonData){
-//        String title = JsonPath.read(jsonData, "$.title");
-//        if (!title.isEmpty()) {
-//            System.err.println("No article found.");
-//            System.exit(-1);
-//        }
-
-
- //   }
-    public static void checkConnection(URL connection) {
+    public void checkConnection(URL connection) {
         try {
             connection.openConnection().connect();
         }
        catch (Exception NetworkError){
             System.err.println("The connection was unable to be established.");
-            System.exit(-1);
+            System.exit(0);
         }
     }
 }
