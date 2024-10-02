@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class UI {
-    public static void main (String [] args ) throws IOException {
+    public void getWikiRevisionsFromCLI() throws IOException {
         RevisionFormatter revisionFormatter = new RevisionFormatter();
-        ErrorHandling errorHandling = new ErrorHandling();
+        ErrorHandlingCLI errorHandlingCLI = new ErrorHandlingCLI();
         String articleInput = getArticleInput();
-        errorHandling.checkEmptyInput(articleInput);
+        errorHandlingCLI.checkEmptyInput(articleInput);
         String jsonData = ReadJSONFile.connectToWikipedia(articleInput);
         ArrayList <Revision> revisionList = RevisionParser.parseRevisions(jsonData);
         checkRedirect(jsonData);

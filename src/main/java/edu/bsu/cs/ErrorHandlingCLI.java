@@ -3,7 +3,7 @@ package edu.bsu.cs;
 import java.net.URL;
 
 
-public class ErrorHandling {
+public class ErrorHandlingCLI {
     public void checkEmptyInput(String articleInput) {
         if (articleInput.isEmpty()) {
             System.err.println("No article input provided.");

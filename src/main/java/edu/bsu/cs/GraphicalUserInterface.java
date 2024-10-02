@@ -21,6 +21,10 @@ public class GraphicalUserInterface extends Application {
     private final TextArea outputField = new TextArea();
     private final TextField redirectField = new TextField();
 
+    public static void main(String[] args) {
+        launch();
+    }
+
     @Override
     public void start(Stage primaryStage) {
         redirectField.setEditable(false);
@@ -51,7 +55,9 @@ public class GraphicalUserInterface extends Application {
     private void configureGetArticleButton() {
         getArticleButton.setOnAction(event -> {
             try {
+                inputField.setEditable(false);
                 getWikiRevisions();
+                inputField.setEditable(true);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -59,9 +65,9 @@ public class GraphicalUserInterface extends Application {
     }
     private void getWikiRevisions() throws IOException {
         RevisionFormatter revisionFormatter = new RevisionFormatter();
-        ErrorHandling errorHandling = new ErrorHandling();
+        ErrorHandlingCLI errorHandlingCLI = new ErrorHandlingCLI();
         String articleInput = inputField.getText();
-        errorHandling.checkEmptyInput(articleInput);
+        errorHandlingCLI.checkEmptyInput(articleInput);
         String jsonData = ReadJSONFile.connectToWikipedia(articleInput);
         ArrayList<Revision> revisionList = RevisionParser.parseRevisions(jsonData);
         checkRedirect(jsonData);
