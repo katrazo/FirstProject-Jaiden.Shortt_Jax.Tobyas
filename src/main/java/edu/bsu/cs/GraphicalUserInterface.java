@@ -71,7 +71,6 @@ public class GraphicalUserInterface extends Application {
         String jsonData = ReadJSONFile.connectToWikipedia(articleInput);
         ArrayList<Revision> revisionList = RevisionParser.parseRevisions(jsonData);
         checkRedirect(jsonData);
-        errorHandlingGUI.checkForInvalidInput(jsonData);
         String formattedRevisions = String.valueOf(revisionFormatter.formatRevision(revisionList));
         outputField.setText(formattedRevisions);
     }

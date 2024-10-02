@@ -1,7 +1,5 @@
 package edu.bsu.cs;
 
-import com.jayway.jsonpath.JsonPath;
-
 import java.net.URL;
 
 public class ErrorHandlingCLI {
@@ -18,14 +16,6 @@ public class ErrorHandlingCLI {
         }
        catch (Exception NetworkError){
             System.err.println("The connection was unable to be established.");
-            System.out.flush();
-        }
-    }
-
-    public void checkForInvalidInput(String jsonData){
-        String pageValueObject = JsonPath.read(jsonData, "$.query.pages[*]");
-        if (pageValueObject.equals("-1")) {
-            System.err.println("Wiki page not found.");
             System.out.flush();
         }
     }
