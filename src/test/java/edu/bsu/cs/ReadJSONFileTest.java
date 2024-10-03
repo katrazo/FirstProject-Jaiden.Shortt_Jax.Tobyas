@@ -42,24 +42,4 @@ public class ReadJSONFileTest {
         Assertions.assertEquals(4, revisions.size());
     }
 
-    /* This is not how try catch blocks work.
-     *
-     * You should use:
-     * > try {code at risk} catch (Exception e) {fallback code}
-     *
-     * Instead, you have:
-     * > try (code at risk as a condition, not a risk) {code not at risk being treated as a risk}
-     */
-    // Instead of calling this method twice, put this code at the start of the test class.
-//    private String readSampleFileAsString() throws NullPointerException, IOException {
-//        try (InputStream sampleFile = Thread.currentThread().getContextClassLoader()
-//                .getResourceAsStream("sampleData.json")) {
-//            return new String(Objects.requireNonNull(sampleFile).readAllBytes(), Charset.defaultCharset());
-//        }
-//    }
-
-//    private JSONArray getRevisionsFromJson(String jsonData) {
-//        return JsonPath.read(jsonData, "$..revisions[*]");
-//    }
-
 }

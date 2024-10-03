@@ -2,19 +2,17 @@ package edu.bsu.cs;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import javax.naming.NameNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class GraphicalUserInterface extends Application {
+public class ApplicationInterface extends Application {
 
     private final Button getArticleButton = new Button("Get Article");
     private final TextField inputField = new TextField();
@@ -55,11 +53,16 @@ public class GraphicalUserInterface extends Application {
     private void configureGetArticleButton() {
         getArticleButton.setOnAction(event -> {
             try {
+                if (inputField.getText().isEmpty())
+                    throw new NameNotFoundException("No article input is provided.");
+
                 inputField.setEditable(false);
                 getWikiRevisions();
                 inputField.setEditable(true);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } catch (Exception e) {
+                Alert errorBox = new Alert (Alert.AlertType.ERROR);
+                errorBox.setContentText(e.getMessage());
+                errorBox.showAndWait();
             }
         });
     }
@@ -68,9 +71,7 @@ public class GraphicalUserInterface extends Application {
     // View-layer code has no business running alllll of this.
     private void getWikiRevisions() throws IOException {
         RevisionFormatter revisionFormatter = new RevisionFormatter();
-        ErrorHandlingGUI errorHandlingGUI = new ErrorHandlingGUI();
         String articleInput = inputField.getText();
-        errorHandlingGUI.checkEmptyInput(articleInput);
         String jsonData = ReadJSONFile.connectToWikipedia(articleInput);
         ArrayList<Revision> revisionList = RevisionParser.parseRevisions(jsonData);
         checkRedirect(jsonData);

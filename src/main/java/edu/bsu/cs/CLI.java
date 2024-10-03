@@ -4,19 +4,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class UI {
+public class CLI {
 
     public static void main(String[] args) throws IOException {
-        UI UserInterface = new UI();
-        UserInterface.getWikiRevisionsFromCLI();
+        // We don't actually care if the CLI throws an error
+        // because our only obligation therein is to show the error.
+        getWikiRevisionsFromCLI();
     }
 
     // Coming here from GraphicalUserInterface, I have the same thing to say.
-    public void getWikiRevisionsFromCLI() throws IOException {
+    public static void getWikiRevisionsFromCLI() throws IOException {
         RevisionFormatter revisionFormatter = new RevisionFormatter();
-        ErrorHandlingCLI errorHandlingCLI = new ErrorHandlingCLI();
         String articleInput = getArticleInput();
-        errorHandlingCLI.checkEmptyInput(articleInput);
         String jsonData = ReadJSONFile.connectToWikipedia(articleInput);
         ArrayList <Revision> revisionList = RevisionParser.parseRevisions(jsonData);
         checkRedirect(jsonData);
@@ -28,6 +27,13 @@ public class UI {
         Scanner inputReader = new Scanner(System.in);
         System.out.println("Enter article title:");
         String articleInput = inputReader.nextLine();
+
+        if (articleInput.isEmpty()) {
+            System.err.println("No article input provided.");
+            System.out.flush();
+            articleInput = getArticleInput();
+        }
+
         inputReader.close();
         return articleInput;
     }
