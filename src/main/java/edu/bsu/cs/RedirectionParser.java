@@ -10,12 +10,14 @@ public class RedirectionParser {
 
         try {
             JSONArray redirectionObject = JsonPath.read(jsonData, "$.query.redirects[*]");
-            if (!redirectionObject.isEmpty()) {
+
+            if (!redirectionObject.isEmpty())
                 titleRedirectedTo = JsonPath.read(redirectionObject.getFirst(), "$.to");
-            }
+
         } catch (PathNotFoundException e) {
             return null;
         }
+
         return titleRedirectedTo;
     }
 }

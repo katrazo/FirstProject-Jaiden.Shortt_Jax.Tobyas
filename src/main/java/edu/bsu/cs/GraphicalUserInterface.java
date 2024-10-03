@@ -63,6 +63,9 @@ public class GraphicalUserInterface extends Application {
             }
         });
     }
+
+    // This method should be somewhere in production code so that you can use it more than once.
+    // View-layer code has no business running alllll of this.
     private void getWikiRevisions() throws IOException {
         RevisionFormatter revisionFormatter = new RevisionFormatter();
         ErrorHandlingGUI errorHandlingGUI = new ErrorHandlingGUI();
@@ -74,6 +77,8 @@ public class GraphicalUserInterface extends Application {
         String formattedRevisions = String.valueOf(revisionFormatter.formatRevision(revisionList));
         outputField.setText(formattedRevisions);
     }
+
+    // Same for this one. It should probably be in the above method.
     private void checkRedirect(String jsonData) {
         String titleRedirectedTo = RedirectionParser.getRedirect(jsonData);
         redirectField.setText(Objects.requireNonNullElse(titleRedirectedTo, ""));

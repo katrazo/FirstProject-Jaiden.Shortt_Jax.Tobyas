@@ -3,6 +3,8 @@ package edu.bsu.cs;
 import java.net.URL;
 
 public class ErrorHandlingCLI {
+
+    // This is fine
     public void checkEmptyInput(String articleInput) {
         if (articleInput.isEmpty()) {
             System.err.println("No article input provided.");
@@ -10,6 +12,7 @@ public class ErrorHandlingCLI {
         }
     }
 
+    // Error handling should not be running model code.
     public void checkConnection(URL connection) {
         try {
             connection.openConnection().connect();
